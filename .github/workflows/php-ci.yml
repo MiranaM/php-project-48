@@ -1,6 +1,36 @@
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+name: PHP CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          projectBaseDir: .
+          php-version: '8.1'
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run lint
+        run: make lint
+
+      - name: Run tests
+        run: make test
+
+      - name: Upload code coverage to SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ 6f0f2245d9ff86226dfb83e99ea1caee17d36ce5 }}
