@@ -33,4 +33,4 @@ jobs:
       - name: Upload code coverage to SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${{ 6f0f2245d9ff86226dfb83e99ea1caee17d36ce5 }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
