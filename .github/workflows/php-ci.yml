@@ -1,0 +1,6 @@
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: .
+        env:
+          SONAR_TOKEN: ${{ 6f0f2245d9ff86226dfb83e99ea1caee17d36ce5 }}
