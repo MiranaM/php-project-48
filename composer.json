@@ -3,6 +3,11 @@
     "description": "hexlet php-package-48",
     "type": "project",
     "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/Differ.php"
+        ]
+    },
     "authors": [
         {
             "name": "MiranaM",
