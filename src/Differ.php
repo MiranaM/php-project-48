@@ -28,7 +28,8 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
                 return "  - {$key}: {$val1}\n  + {$key}: {$val2}";
             }
             return "    {$key}: {$val1}";
-        }, $allKeys
+        },
+        $allKeys
     );
 
     return "{\n" . implode("\n", $lines) . "\n}";
