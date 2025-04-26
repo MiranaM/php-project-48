@@ -1,7 +1,7 @@
-.PHONY: test lint coverage
+.PHONY: test lint
 
 test:
-	XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+	XDEBUG_MODE=coverage vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml
 
 lint:
 	vendor/bin/phpcs --standard=PSR12 src tests
