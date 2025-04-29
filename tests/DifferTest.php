@@ -15,10 +15,30 @@ class DifferTest extends TestCase
         $this->fixturesPath = __DIR__ . '/fixtures/';
     }
 
-    public function testFlatJsonDiff()
+    public function testFlatJsonDiff(): void
     {
         $file1 = $this->fixturesPath . 'file1.json';
         $file2 = $this->fixturesPath . 'file2.json';
+
+        $expected = <<<EOD
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+EOD;
+
+        $this->assertSame($expected, genDiff($file1, $file2));
+    }
+
+    public function testFlatYamlDiff(): void
+    {
+        $file1 = $this->fixturesPath . 'file1.yml';
+        $file2 = $this->fixturesPath . 'file2.yml';
+
         $expected = <<<EOD
 {
   - follow: false
