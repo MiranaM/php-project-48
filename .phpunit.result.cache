@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":8,"Differ\\Tests\\DifferTest::testFlatYamlDiff":7},"times":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":0.182,"Differ\\Tests\\DifferTest::testFlatYamlDiff":0.016}}
+{"version":1,"defects":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":8,"Differ\\Tests\\DifferTest::testFlatYamlDiff":7},"times":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":0.156,"Differ\\Tests\\DifferTest::testFlatYamlDiff":0.014}}
