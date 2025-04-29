@@ -3,7 +3,6 @@
 namespace Differ\Differ;
 
 use function Differ\Parsers\parse;
-
 use function Differ\Utils\varToStr;
 
 function genDiff(string $pathToFile1, string $pathToFile2): string
