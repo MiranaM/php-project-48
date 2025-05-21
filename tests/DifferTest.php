@@ -3,53 +3,23 @@
 namespace Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
-
 use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
-    private string $fixturesPath;
+    private string $file1;
+    private string $file2;
+    private string $expected;
 
     protected function setUp(): void
     {
-        $this->fixturesPath = __DIR__ . '/fixtures/';
+        $this->file1 = __DIR__ . '/__fixtures__/file1.json';
+        $this->file2 = __DIR__ . '/__fixtures__/file2.json';
+        $this->expected = file_get_contents(__DIR__ . '/__fixtures__/expected_stylish.txt');
     }
 
-    public function testFlatJsonDiff(): void
+    public function testStylishFormat(): void
     {
-        $file1 = $this->fixturesPath . 'file1.json';
-        $file2 = $this->fixturesPath . 'file2.json';
-
-        $expected = <<<EOD
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-EOD;
-
-        $this->assertSame($expected, genDiff($file1, $file2));
-    }
-
-    public function testFlatYamlDiff(): void
-    {
-        $file1 = $this->fixturesPath . 'file1.yml';
-        $file2 = $this->fixturesPath . 'file2.yml';
-
-        $expected = <<<EOD
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-EOD;
-
-        $this->assertSame($expected, genDiff($file1, $file2));
+        $this->assertEquals($this->expected, genDiff($this->file1, $this->file2));
     }
 }

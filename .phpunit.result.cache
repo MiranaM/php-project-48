@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":8,"Differ\\Tests\\DifferTest::testFlatYamlDiff":7},"times":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":0.157,"Differ\\Tests\\DifferTest::testFlatYamlDiff":0.019}}
+{"version":1,"defects":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":7,"Differ\\Tests\\DifferTest::testFlatYamlDiff":7,"Differ\\Tests\\DifferTest::testStylishFormat":7},"times":{"Differ\\Tests\\DifferTest::testFlatJsonDiff":0.202,"Differ\\Tests\\DifferTest::testFlatYamlDiff":0.048,"Differ\\Tests\\DifferTest::testStylishFormat":0.195}}
