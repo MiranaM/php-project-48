@@ -5,6 +5,7 @@ namespace Differ\Differ;
 use function Differ\Parser\parseFile;
 use function Differ\Formatters\Plain\formatPlain;
 use function Differ\Formatters\Stylish\formatStylish;
+use function Differ\Formatters\Json\formatJson;
 
 function genDiff(string $path1, string $path2, string $format = 'stylish'): string
 {
@@ -12,8 +13,9 @@ function genDiff(string $path1, string $path2, string $format = 'stylish'): stri
     $data2 = parseFile($path2);
 
     return match ($format) {
-        'plain' => formatPlain($data1, $data2),
-        'stylish' => formatStylish($data1, $data2),
+        'plain' => formatPlain($data1, $data2, ''),
+        'stylish' => formatStylish($data1, $data2, ''),
+        'json' => formatJson($data1, $data2, ''),
         default => throw new \Exception("Unsupported format: $format"),
     };
 }

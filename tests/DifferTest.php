@@ -19,6 +19,7 @@ class DifferTest extends TestCase
         $this->file2 = __DIR__ . '/__fixtures__/file2.json';
         $this->expectedStylish = file_get_contents(__DIR__ . '/__fixtures__/expected_stylish.txt');
         $this->expectedPlain = file_get_contents(__DIR__ . '/__fixtures__/expected_plain.txt');
+        $this->expectedJson = file_get_contents(__DIR__ . '/__fixtures__/expected_json.txt');
     }
 
     public function testStylishFormat(): void
@@ -29,5 +30,10 @@ class DifferTest extends TestCase
     public function testPlainFormat(): void
     {
         $this->assertEquals($this->expectedPlain, genDiff($this->file1, $this->file2, 'plain'));
+    }
+
+    public function testJsonFormat(): void
+    {
+        $this->assertEquals($this->expectedJson, genDiff($this->file1, $this->file2, 'json'));
     }
 }

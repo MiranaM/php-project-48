@@ -18,3 +18,6 @@
 
 <p>Demo8</p>
 <a href="https://asciinema.org/a/I87JqItaVX78r5yhDMdSoELd9" target="_blank"><img src="https://asciinema.org/a/I87JqItaVX78r5yhDMdSoELd9.svg" /></a>
+
+<p>Demo9</p>
+<a href="https://asciinema.org/a/9ulLXwpSIs2iWwlb490jrFyTI" target="_blank"><img src="https://asciinema.org/a/9ulLXwpSIs2iWwlb490jrFyTI.svg" /></a>
