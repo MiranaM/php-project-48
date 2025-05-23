@@ -14,8 +14,8 @@ function genDiff(string $path1, string $path2, string $format = 'stylish'): stri
 
     return match ($format) {
         'plain' => formatPlain($data1, $data2, ''),
-        'stylish' => formatStylish($data1, $data2, ''),
-        'json' => formatJson($data1, $data2, ''),
+        'stylish' => formatStylish($data1, $data2),
+        'json' => formatJson($data1, $data2),
         default => throw new \Exception("Unsupported format: $format"),
     };
 }
