@@ -1,22 +1,22 @@
 {
     common: {
-      + follow: false
-        setting1: Value 1
-      - setting2: 200
-      + setting4: blah blah
-      + setting5: {
+    + follow: false
+      setting1: Value 1
+    - setting2: 200
+    + setting4: blah blah
+    + setting5: {
         key5: value5
     }
-        setting6: {
-            doge: {
+      setting6: {
+          doge: {
 
             }
-            key: value
-          + ops: vops
+          key: value
+        + ops: vops
         }
     }
     group1: {
-        foo: bar
+      foo: bar
     }
   - group2: {
     abc: 12345
