@@ -50,7 +50,7 @@ function formatStylish(array $tree, int $depth = 0): string
                 $value = stringify($node['value'], $depth);
                 $lines[] = "{$markIndent(' ')}$key: $value";
                 break;
-            case 'updated':
+            case 'changed':
                 $old = stringify($node['oldValue'], $depth);
                 $new = stringify($node['newValue'], $depth);
                 $lines[] = "{$markIndent('-')}$key: $old";
