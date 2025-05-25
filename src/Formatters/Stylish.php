@@ -4,8 +4,16 @@ namespace Differ\Formatters\Stylish;
 
 function stringify($value, int $depth): string
 {
+    if (is_bool($value)) {
+        return $value ? 'true' : 'false';
+    }
+
+    if ($value === null) {
+        return 'null';
+    }
+
     if (!is_array($value)) {
-        return var_export($value, true);
+        return (string) $value;
     }
 
     $indent = str_repeat('    ', $depth + 1);
