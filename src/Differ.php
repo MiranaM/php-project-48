@@ -3,20 +3,14 @@
 namespace Differ\Differ;
 
 use function Differ\Parser\parseFile;
-use function Differ\Formatters\Plain\formatPlain;
-use function Differ\Formatters\Stylish\formatStylish;
-use function Differ\Formatters\Json\formatJson;
-use Differ\Exception\FormatException;
+use function Differ\BuildDiff\buildDiff;
+use function Differ\Formatters\format;
 
-function genDiff(string $path1, string $path2, string $format = 'stylish'): string
+function genDiff(string $path1, string $path2, string $formatName = 'stylish'): string
 {
     $data1 = parseFile($path1);
     $data2 = parseFile($path2);
+    $diffTree = buildDiff($data1, $data2);
 
-    return match ($format) {
-        'plain' => formatPlain($data1, $data2, ''),
-        'stylish' => formatStylish($data1, $data2),
-        'json' => formatJson($data1, $data2),
-        default => throw new FormatException("Unknown format: {$formatName}"),
-    };
+    return format($diffTree, $formatName);
 }

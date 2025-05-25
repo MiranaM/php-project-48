@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748007860">
-  <project timestamp="1748007860">
-    <file name="/home/me/php-project-48/src/Differ.php">
+<coverage generated="1748192446">
+  <project timestamp="1748192446">
+    <file name="/home/me/php-project-48/src/BuildDiff.php">
+      <line num="7" type="stmt" count="3"/>
+      <line num="8" type="stmt" count="3"/>
+      <line num="9" type="stmt" count="3"/>
+      <line num="11" type="stmt" count="3"/>
+      <line num="12" type="stmt" count="3"/>
       <line num="13" type="stmt" count="3"/>
-      <line num="14" type="stmt" count="3"/>
+      <line num="15" type="stmt" count="3"/>
       <line num="16" type="stmt" count="3"/>
-      <line num="17" type="stmt" count="1"/>
-      <line num="18" type="stmt" count="1"/>
-      <line num="19" type="stmt" count="1"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="19" type="stmt" count="3"/>
       <line num="20" type="stmt" count="3"/>
       <line num="21" type="stmt" count="3"/>
-      <metrics loc="23" ncloc="23" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="8" coveredelements="8"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="29" type="stmt" count="3"/>
+      <metrics loc="31" ncloc="31" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="17" coveredelements="17"/>
+    </file>
+    <file name="/home/me/php-project-48/src/Differ.php">
+      <line num="11" type="stmt" count="3"/>
+      <line num="12" type="stmt" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="15" type="stmt" count="3"/>
+      <metrics loc="17" ncloc="17" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="4" coveredelements="4"/>
     </file>
     <file name="/home/me/php-project-48/src/Exception/CustomExceptions.php">
       <class name="Differ\Exception\FileException" namespace="global">
@@ -19,34 +35,64 @@
       <class name="Differ\Exception\FormatException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
-      <metrics loc="6" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <file name="/home/me/php-project-48/src/Formatters.php">
-      <line num="12" type="stmt" count="0"/>
-      <line num="13" type="stmt" count="0"/>
-      <line num="14" type="stmt" count="0"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="16" type="stmt" count="0"/>
-      <line num="17" type="stmt" count="0"/>
-      <metrics loc="19" ncloc="19" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="6" coveredelements="0"/>
+      <line num="12" type="stmt" count="3"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <metrics loc="19" ncloc="19" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="6" coveredelements="6"/>
     </file>
     <file name="/home/me/php-project-48/src/Formatters/Json.php">
       <line num="7" type="stmt" count="1"/>
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="1" coveredelements="1"/>
+    </file>
+    <file name="/home/me/php-project-48/src/Formatters/Plain.php">
+      <line num="7" type="stmt" count="1"/>
       <line num="8" type="stmt" count="1"/>
-      <line num="13" type="stmt" count="1"/>
-      <line num="14" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="1"/>
-      <line num="18" type="stmt" count="1"/>
+      <line num="11" type="stmt" count="1"/>
+      <line num="12" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="0"/>
       <line num="19" type="stmt" count="1"/>
-      <line num="20" type="stmt" count="1"/>
-      <line num="22" type="stmt" count="1"/>
-      <line num="23" type="stmt" count="1"/>
       <line num="24" type="stmt" count="1"/>
-      <line num="25" type="stmt" count="1"/>
       <line num="26" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="29" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <metrics loc="50" ncloc="50" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="22" elements="27" coveredelements="22"/>
+    </file>
+    <file name="/home/me/php-project-48/src/Formatters/Stylish.php">
+      <line num="7" type="stmt" count="1"/>
+      <line num="8" type="stmt" count="1"/>
+      <line num="11" type="stmt" count="1"/>
+      <line num="12" type="stmt" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="1"/>
       <line num="30" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
       <line num="32" type="stmt" count="1"/>
@@ -58,71 +104,30 @@
       <line num="38" type="stmt" count="1"/>
       <line num="39" type="stmt" count="1"/>
       <line num="40" type="stmt" count="1"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="1"/>
-      <metrics loc="52" ncloc="52" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="28" elements="33" coveredelements="28"/>
-    </file>
-    <file name="/home/me/php-project-48/src/Formatters/Plain.php">
-      <line num="7" type="stmt" count="1"/>
-      <line num="8" type="stmt" count="1"/>
-      <line num="11" type="stmt" count="1"/>
-      <line num="12" type="stmt" count="1"/>
-      <line num="15" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="1"/>
-      <line num="19" type="stmt" count="1"/>
-      <line num="24" type="stmt" count="1"/>
-      <line num="25" type="stmt" count="1"/>
-      <line num="26" type="stmt" count="1"/>
-      <line num="28" type="stmt" count="1"/>
-      <line num="29" type="stmt" count="1"/>
-      <line num="30" type="stmt" count="1"/>
-      <line num="31" type="stmt" count="1"/>
-      <line num="33" type="stmt" count="1"/>
-      <line num="34" type="stmt" count="1"/>
-      <line num="35" type="stmt" count="1"/>
-      <line num="36" type="stmt" count="1"/>
-      <line num="37" type="stmt" count="1"/>
-      <line num="38" type="stmt" count="1"/>
-      <line num="39" type="stmt" count="1"/>
-      <line num="40" type="stmt" count="1"/>
       <line num="41" type="stmt" count="1"/>
       <line num="42" type="stmt" count="1"/>
       <line num="43" type="stmt" count="1"/>
-      <line num="47" type="stmt" count="1"/>
-      <metrics loc="49" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="26" coveredelements="26"/>
-    </file>
-    <file name="/home/me/php-project-48/src/Formatters/Stylish.php">
-      <line num="7" type="stmt" count="1"/>
-      <line num="8" type="stmt" count="1"/>
-      <line num="9" type="stmt" count="1"/>
-      <line num="11" type="stmt" count="1"/>
-      <line num="12" type="stmt" count="1"/>
-      <line num="13" type="stmt" count="1"/>
-      <line num="15" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="1"/>
-      <line num="17" type="stmt" count="1"/>
-      <line num="18" type="stmt" count="1"/>
-      <line num="19" type="stmt" count="1"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="22" type="stmt" count="1"/>
-      <line num="23" type="stmt" count="1"/>
-      <line num="27" type="stmt" count="1"/>
-      <line num="28" type="stmt" count="1"/>
-      <metrics loc="30" ncloc="30" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="15" elements="16" coveredelements="15"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="56" type="stmt" count="1"/>
+      <metrics loc="58" ncloc="58" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="31" elements="36" coveredelements="31"/>
     </file>
     <file name="/home/me/php-project-48/src/Parser.php">
-      <line num="10" type="stmt" count="3"/>
       <line num="11" type="stmt" count="3"/>
-      <line num="13" type="stmt" count="3"/>
+      <line num="12" type="stmt" count="3"/>
       <line num="14" type="stmt" count="3"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="16" type="stmt" count="3"/>
+      <line num="15" type="stmt" count="3"/>
+      <line num="16" type="stmt" count="0"/>
       <line num="17" type="stmt" count="3"/>
-      <metrics loc="19" ncloc="19" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="7" coveredelements="6"/>
+      <line num="18" type="stmt" count="3"/>
+      <metrics loc="20" ncloc="20" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="7" coveredelements="6"/>
     </file>
     <file name="/home/me/php-project-48/src/Utils.php">
       <line num="8" type="stmt" count="0"/>
@@ -130,6 +135,6 @@
       <line num="10" type="stmt" count="0"/>
       <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="8" loc="211" ncloc="211" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="99" coveredstatements="83" elements="99" coveredelements="83"/>
+    <metrics files="9" loc="228" ncloc="228" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="101" coveredstatements="87" elements="101" coveredelements="87"/>
   </project>
 </coverage>

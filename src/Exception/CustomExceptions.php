@@ -2,5 +2,10 @@
 
 namespace Differ\Exception;
 
-class FileException extends \Exception {}
-class FormatException extends \Exception {}
+class FileException extends \Exception
+{
+}
+
+class FormatException extends \Exception
+{
+}

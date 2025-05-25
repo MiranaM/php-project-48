@@ -2,28 +2,56 @@
 
 namespace Differ\Formatters\Stylish;
 
-function formatStylish(array $data1, array $data2): string
+function stringify($value, int $depth): string
 {
-    $allKeys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
-    sort($allKeys);
-    $lines = ['{'];
+    if (!is_array($value)) {
+        return var_export($value, true);
+    }
 
-    foreach ($allKeys as $key) {
-        $has1 = array_key_exists($key, $data1);
-        $has2 = array_key_exists($key, $data2);
+    $indent = str_repeat('    ', $depth + 1);
+    $bracketIndent = str_repeat('    ', $depth);
+    $lines = [];
 
-        if ($has1 && !$has2) {
-            $lines[] = "  - $key: " . var_export($data1[$key], true);
-        } elseif (!$has1 && $has2) {
-            $lines[] = "  + $key: " . var_export($data2[$key], true);
-        } elseif ($data1[$key] === $data2[$key]) {
-            $lines[] = "    $key: " . var_export($data1[$key], true);
-        } else {
-            $lines[] = "  - $key: " . var_export($data1[$key], true);
-            $lines[] = "  + $key: " . var_export($data2[$key], true);
+    foreach ($value as $key => $val) {
+        $lines[] = "$indent$key: " . stringify($val, $depth + 1);
+    }
+
+    return "{\n" . implode("\n", $lines) . "\n$bracketIndent}";
+}
+
+function formatStylish(array $tree, int $depth = 0): string
+{
+    $indent = str_repeat('    ', $depth);
+    $lines = [];
+
+    foreach ($tree as $node) {
+        $key = $node['key'];
+
+        switch ($node['type']) {
+            case 'added':
+                $value = stringify($node['value'], $depth);
+                $lines[] = "{$indent}  + $key: $value";
+                break;
+            case 'removed':
+                $value = stringify($node['value'], $depth);
+                $lines[] = "{$indent}  - $key: $value";
+                break;
+            case 'unchanged':
+                $value = stringify($node['value'], $depth);
+                $lines[] = "{$indent}    $key: $value";
+                break;
+            case 'updated':
+                $old = stringify($node['oldValue'], $depth);
+                $new = stringify($node['newValue'], $depth);
+                $lines[] = "{$indent}  - $key: $old";
+                $lines[] = "{$indent}  + $key: $new";
+                break;
+            case 'nested':
+                $children = formatStylish($node['children'], $depth + 1);
+                $lines[] = "{$indent}    $key: $children";
+                break;
         }
     }
 
-    $lines[] = '}';
-    return implode("\n", $lines);
+    return "{\n" . implode("\n", $lines) . "\n$indent}";
 }

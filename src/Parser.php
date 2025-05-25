@@ -2,8 +2,9 @@
 
 namespace Differ\Parser;
 
-use Symfony\Component\Yaml\Yaml;
 use Differ\Exception\FileException;
+use Symfony\Component\Yaml\Yaml;
+
 
 function parseFile(string $filepath): array
 {
