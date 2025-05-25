@@ -5,7 +5,6 @@ namespace Differ\Parser;
 use Differ\Exception\FileException;
 use Symfony\Component\Yaml\Yaml;
 
-
 function parseFile(string $filepath): array
 {
     $content = file_get_contents($filepath);
