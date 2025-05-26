@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748261153">
-  <project timestamp="1748261153">
+<coverage generated="1748261749">
+  <project timestamp="1748261749">
     <file name="/home/me/php-project-48/src/BuildDiff.php">
       <line num="7" type="stmt" count="3"/>
       <line num="8" type="stmt" count="3"/>
@@ -56,12 +56,13 @@
       <line num="11" type="stmt" count="1"/>
       <line num="12" type="stmt" count="1"/>
       <line num="15" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="1"/>
       <line num="19" type="stmt" count="1"/>
       <line num="24" type="stmt" count="1"/>
-      <line num="26" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
       <line num="30" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
       <line num="32" type="stmt" count="1"/>
@@ -70,15 +71,11 @@
       <line num="35" type="stmt" count="1"/>
       <line num="36" type="stmt" count="1"/>
       <line num="37" type="stmt" count="1"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="1"/>
       <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
       <line num="42" type="stmt" count="1"/>
-      <line num="43" type="stmt" count="1"/>
       <line num="44" type="stmt" count="1"/>
-      <line num="48" type="stmt" count="1"/>
-      <metrics loc="50" ncloc="50" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="22" elements="27" coveredelements="22"/>
+      <metrics loc="46" ncloc="46" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="23" elements="24" coveredelements="23"/>
     </file>
     <file name="/home/me/php-project-48/src/Formatters/Stylish.php">
       <line num="7" type="stmt" count="1"/>
@@ -134,6 +131,6 @@
       <line num="10" type="stmt" count="0"/>
       <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="9" loc="231" ncloc="230" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="100" coveredstatements="90" elements="100" coveredelements="90"/>
+    <metrics files="9" loc="227" ncloc="226" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="97" coveredstatements="91" elements="97" coveredelements="91"/>
   </project>
 </coverage>

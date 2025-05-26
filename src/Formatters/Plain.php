@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Plain;
 
-function formatValue($value): string
+function toString($value): string
 {
     if (is_array($value)) {
         return '[complex value]';
@@ -16,34 +16,30 @@ function formatValue($value): string
         return 'null';
     }
 
-    return is_string($value) ? "'$value'" : (string)$value;
+    return is_string($value) ? "'{$value}'" : (string)$value;
 }
 
-function formatPlain(array $tree, string $path = ''): string
+function formatPlain(array $tree, string $ancestor = ''): string
 {
-    $lines = [];
-
-    foreach ($tree as $node) {
-        $key = $node['key'];
-        $property = $path === '' ? $key : "$path.$key";
+    $lines = array_map(function ($node) use ($ancestor) {
+        $property = $ancestor === '' ? $node['key'] : "{$ancestor}.{$node['key']}";
 
         switch ($node['type']) {
             case 'added':
-                $lines[] = "Property '$property' was added with value: " . formatValue($node['value']);
-                break;
+                return "Property '{$property}' was added with value: " . toString($node['value']);
             case 'removed':
-                $lines[] = "Property '$property' was removed";
-                break;
-            case 'updated':
-                $old = formatValue($node['oldValue']);
-                $new = formatValue($node['newValue']);
-                $lines[] = "Property '$property' was updated. From $old to $new";
-                break;
+                return "Property '{$property}' was removed";
+            case 'changed':
+                return "Property '{$property}' was updated. From " 
+                    . toString($node['oldValue']) . " to " . toString($node['newValue']);
             case 'nested':
-                $lines[] = formatPlain($node['children'], $property);
-                break;
+                return formatPlain($node['children'], $property);
+            case 'unchanged':
+                return '';
+            default:
+                throw new \Exception("Unknown node type: {$node['type']}");
         }
-    }
+    }, $tree);
 
-    return implode("\n", array_filter($lines));
+    return implode("\n", array_filter($lines, fn($line) => $line !== ''));
 }
