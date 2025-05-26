@@ -17,7 +17,7 @@ function stringify(mixed $value, int $depth): string
     }
 
     $indentSize = 4;
-    $currentIndent = str_repeat(' ', $depth * $indentSize + $indentSize);
+    $currentIndent = str_repeat(' ', ($depth + 1) * $indentSize);
     $bracketIndent = str_repeat(' ', $depth * $indentSize);
     $lines = [];
 
@@ -31,33 +31,34 @@ function stringify(mixed $value, int $depth): string
 function formatStylish(array $tree, int $depth = 0): string
 {
     $indentSize = 4;
-    $indent = str_repeat(' ', $depth * $indentSize);
-    $signIndent = fn($sign) => str_repeat(' ', max(0, $depth * $indentSize - 2)) . "$sign ";
-
+    $baseIndent = str_repeat(' ', $depth * $indentSize);
     $lines = [];
 
     foreach ($tree as $node) {
         $key = $node['key'];
+        $valueIndent = str_repeat(' ', $indentSize * $depth + 2); // '  '
+        $signIndent = fn($sign) => str_repeat(' ', $indentSize * $depth) . "$sign ";
+
         switch ($node['type']) {
             case 'added':
-                $lines[] = $signIndent('+') . $key . ': ' . stringify($node['value'], $depth + 1);
+                $lines[] = $signIndent('+') . "{$key}: " . stringify($node['value'], $depth + 1);
                 break;
             case 'removed':
-                $lines[] = $signIndent('-') . $key . ': ' . stringify($node['value'], $depth + 1);
+                $lines[] = $signIndent('-') . "{$key}: " . stringify($node['value'], $depth + 1);
                 break;
             case 'unchanged':
-                $lines[] = $indent . "    $key: " . stringify($node['value'], $depth + 1);
+                $lines[] = $valueIndent . "  {$key}: " . stringify($node['value'], $depth + 1);
                 break;
             case 'updated':
-                $lines[] = $signIndent('-') . $key . ': ' . stringify($node['oldValue'], $depth + 1);
-                $lines[] = $signIndent('+') . $key . ': ' . stringify($node['newValue'], $depth + 1);
+                $lines[] = $signIndent('-') . "{$key}: " . stringify($node['oldValue'], $depth + 1);
+                $lines[] = $signIndent('+') . "{$key}: " . stringify($node['newValue'], $depth + 1);
                 break;
             case 'nested':
                 $children = formatStylish($node['children'], $depth + 1);
-                $lines[] = $indent . "    $key: $children";
+                $lines[] = $valueIndent . "  {$key}: {$children}";
                 break;
         }
     }
 
-    return "{\n" . implode("\n", $lines) . "\n$indent}";
+    return "{\n" . implode("\n", $lines) . "\n{$baseIndent}}";
 }
