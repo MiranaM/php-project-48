@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Stylish;
 
-function stringify($value, int $depth): string
+function stringify(mixed $value, int $depth): string
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
@@ -16,52 +16,48 @@ function stringify($value, int $depth): string
         return (string) $value;
     }
 
-    $indent = str_repeat('    ', $depth + 1);
-    $bracketIndent = str_repeat('    ', $depth);
+    $indentSize = 4;
+    $currentIndent = str_repeat(' ', $depth * $indentSize + $indentSize);
+    $bracketIndent = str_repeat(' ', $depth * $indentSize);
     $lines = [];
 
     foreach ($value as $key => $val) {
-        $lines[] = "$indent$key: " . stringify($val, $depth + 1);
+        $lines[] = "{$currentIndent}{$key}: " . stringify($val, $depth + 1);
     }
 
-    return "{\n" . implode("\n", $lines) . "\n$bracketIndent}";
+    return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
 }
 
 function formatStylish(array $tree, int $depth = 0): string
 {
-    $baseIndent = str_repeat('    ', $depth);
-    $markIndent = fn($mark) => substr($baseIndent, 0, -2) . "  $mark ";
+    $indentSize = 4;
+    $indent = str_repeat(' ', $depth * $indentSize);
+    $signIndent = fn($sign) => str_repeat(' ', max(0, $depth * $indentSize - 2)) . "$sign ";
 
     $lines = [];
 
     foreach ($tree as $node) {
         $key = $node['key'];
-
         switch ($node['type']) {
             case 'added':
-                $value = stringify($node['value'], $depth);
-                $lines[] = "{$markIndent('+')}$key: $value";
+                $lines[] = $signIndent('+') . $key . ': ' . stringify($node['value'], $depth + 1);
                 break;
             case 'removed':
-                $value = stringify($node['value'], $depth);
-                $lines[] = "{$markIndent('-')}$key: $value";
+                $lines[] = $signIndent('-') . $key . ': ' . stringify($node['value'], $depth + 1);
                 break;
             case 'unchanged':
-                $value = stringify($node['value'], $depth);
-                $lines[] = "{$markIndent(' ')}$key: $value";
+                $lines[] = $indent . "    $key: " . stringify($node['value'], $depth + 1);
                 break;
-            case 'changed':
-                $old = stringify($node['oldValue'], $depth);
-                $new = stringify($node['newValue'], $depth);
-                $lines[] = "{$markIndent('-')}$key: $old";
-                $lines[] = "{$markIndent('+')}$key: $new";
+            case 'updated':
+                $lines[] = $signIndent('-') . $key . ': ' . stringify($node['oldValue'], $depth + 1);
+                $lines[] = $signIndent('+') . $key . ': ' . stringify($node['newValue'], $depth + 1);
                 break;
             case 'nested':
                 $children = formatStylish($node['children'], $depth + 1);
-                $lines[] = "{$markIndent(' ')}$key: $children";
+                $lines[] = $indent . "    $key: $children";
                 break;
         }
     }
 
-    return "{\n" . implode("\n", $lines) . "\n{$baseIndent}}";
+    return "{\n" . implode("\n", $lines) . "\n$indent}";
 }
