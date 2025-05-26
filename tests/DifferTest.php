@@ -25,7 +25,7 @@ class DifferTest extends TestCase
     public function testStylishFormat(): void
     {
         $this->assertEquals($this->expectedStylish, genDiff($this->file1, $this->file2, 'stylish'));
-    }    
+    }
 
     public function testPlainFormat(): void
     {
