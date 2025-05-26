@@ -31,33 +31,28 @@ function stringify(mixed $value, int $depth): string
 function formatStylish(array $tree, int $depth = 1): string
 {
     $indentSize = 4;
-    $currentIndent = str_repeat(' ', $indentSize * $depth - 2);
+    $currentIndent = str_repeat(' ', $indentSize * ($depth - 1));
     $bracketIndent = str_repeat(' ', $indentSize * ($depth - 1));
 
-    $lines = [];
-
-    foreach ($tree as $node) {
+    $lines = array_map(function ($node) use ($depth, $currentIndent, $bracketIndent) {
         $key = $node['key'];
         switch ($node['type']) {
             case 'added':
-                $lines[] = "{$currentIndent}+ {$key}: " . stringify($node['value'], $depth + 1);
-                break;
+                return $currentIndent . "  + " . $key . ": " . stringify($node['value'], $depth + 1);
             case 'removed':
-                $lines[] = "{$currentIndent}- {$key}: " . stringify($node['value'], $depth + 1);
-                break;
-            case 'unchanged':
-                $lines[] = "{$bracketIndent}    {$key}: " . stringify($node['value'], $depth + 1);
-                break;
-            case 'updated':
-                $lines[] = "{$currentIndent}- {$key}: " . stringify($node['oldValue'], $depth + 1);
-                $lines[] = "{$currentIndent}+ {$key}: " . stringify($node['newValue'], $depth + 1);
-                break;
+                return $currentIndent . "  - " . $key . ": " . stringify($node['value'], $depth + 1);
+            case 'changed':
+                return $currentIndent . "  - " . $key . ": " . stringify($node['oldValue'], $depth + 1) . "\n" .
+                       $currentIndent . "  + " . $key . ": " . stringify($node['newValue'], $depth + 1);
             case 'nested':
                 $children = formatStylish($node['children'], $depth + 1);
-                $lines[] = "{$bracketIndent}    {$key}: {$children}";
-                break;
+                return $currentIndent . "    " . $key . ": " . $children;
+            case 'unchanged':
+                return $currentIndent . "    " . $key . ": " . stringify($node['value'], $depth + 1);
+            default:
+                throw new \Exception("Unknown node type: {$node['type']}");
         }
-    }
+    }, $tree);
 
     return "{\n" . implode("\n", $lines) . "\n" . $bracketIndent . "}";
 }
