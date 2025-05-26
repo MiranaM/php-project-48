@@ -30,7 +30,7 @@ function formatPlain(array $tree, string $ancestor = ''): string
             case 'removed':
                 return "Property '{$property}' was removed";
             case 'changed':
-                return "Property '{$property}' was updated. From " 
+                return "Property '{$property}' was updated. From "
                     . toString($node['oldValue']) . " to " . toString($node['newValue']);
             case 'nested':
                 return formatPlain($node['children'], $property);
