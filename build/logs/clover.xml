@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748253229">
-  <project timestamp="1748253229">
+<coverage generated="1748255226">
+  <project timestamp="1748255226">
     <file name="/home/me/php-project-48/src/BuildDiff.php">
       <line num="7" type="stmt" count="3"/>
       <line num="8" type="stmt" count="3"/>
@@ -83,24 +83,25 @@
     <file name="/home/me/php-project-48/src/Formatters/Stylish.php">
       <line num="7" type="stmt" count="1"/>
       <line num="8" type="stmt" count="1"/>
+      <line num="9" type="stmt" count="1"/>
       <line num="11" type="stmt" count="1"/>
-      <line num="12" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="1"/>
       <line num="15" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="0"/>
       <line num="19" type="stmt" count="1"/>
       <line num="20" type="stmt" count="1"/>
-      <line num="21" type="stmt" count="1"/>
-      <line num="22" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
       <line num="24" type="stmt" count="1"/>
       <line num="25" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
       <line num="33" type="stmt" count="1"/>
       <line num="34" type="stmt" count="1"/>
       <line num="35" type="stmt" count="1"/>
       <line num="37" type="stmt" count="1"/>
-      <line num="38" type="stmt" count="1"/>
       <line num="39" type="stmt" count="1"/>
       <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
       <line num="42" type="stmt" count="1"/>
       <line num="43" type="stmt" count="1"/>
       <line num="44" type="stmt" count="1"/>
@@ -111,16 +112,15 @@
       <line num="49" type="stmt" count="1"/>
       <line num="50" type="stmt" count="1"/>
       <line num="51" type="stmt" count="1"/>
-      <line num="52" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="0"/>
       <line num="53" type="stmt" count="0"/>
       <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="1"/>
       <line num="56" type="stmt" count="1"/>
       <line num="57" type="stmt" count="1"/>
       <line num="58" type="stmt" count="1"/>
-      <line num="59" type="stmt" count="1"/>
-      <line num="63" type="stmt" count="1"/>
-      <metrics loc="65" ncloc="64" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="39" coveredstatements="35" elements="39" coveredelements="35"/>
+      <line num="62" type="stmt" count="1"/>
+      <metrics loc="64" ncloc="64" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="39" coveredstatements="35" elements="39" coveredelements="35"/>
     </file>
     <file name="/home/me/php-project-48/src/Parser.php">
       <line num="10" type="stmt" count="3"/>
@@ -138,6 +138,6 @@
       <line num="10" type="stmt" count="0"/>
       <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="9" loc="237" ncloc="235" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="91" elements="104" coveredelements="91"/>
+    <metrics files="9" loc="236" ncloc="235" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="91" elements="104" coveredelements="91"/>
   </project>
 </coverage>
