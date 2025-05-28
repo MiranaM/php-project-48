@@ -3,7 +3,6 @@
 namespace Differ\BuildDiff;
 
 use Illuminate\Support\Collection;
-use function Illuminate\Support\collect;
 
 function buildDiff(array $data1, array $data2): array
 {
