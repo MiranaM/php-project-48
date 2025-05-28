@@ -34,7 +34,7 @@ function formatStylish(array $tree, int $depth = 1): string
     $currentIndent = str_repeat(' ', $indentSize * ($depth - 1));
     $bracketIndent = str_repeat(' ', $indentSize * ($depth - 1));
 
-    $lines = array_map(function ($node) use ($depth, $currentIndent, $bracketIndent) {
+    $lines = array_map(function ($node) use ($depth, $currentIndent) {
         $key = $node['key'];
         switch ($node['type']) {
             case 'added':

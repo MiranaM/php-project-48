@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Plain;
 
-function toString($value): string
+function toString(mixed $value): string
 {
     if (is_array($value)) {
         return '[complex value]';

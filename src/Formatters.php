@@ -12,6 +12,6 @@ function format(array $diffTree, string $formatName): string
         'stylish' => formatStylish($diffTree),
         'plain' => formatPlain($diffTree),
         'json' => formatJson($diffTree),
-        default => ['error' => "Unknown format: {$formatName}"],
+        default => throw new \InvalidArgumentException("Unknown format: {$formatName}"),
     };
 }

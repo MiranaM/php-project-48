@@ -2,7 +2,7 @@
 
 namespace Differ\Utils;
 
-function varToStr($value): string
+function varToStr(mixed $value): string
 {
     return match (true) {
         is_bool($value) => $value ? 'true' : 'false',
