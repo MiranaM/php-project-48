@@ -2,34 +2,57 @@
 
 namespace Differ\BuildDiff;
 
-function buildDiff(array $data1, array $data2): array
+use function Functional\sort;
+
+function buildDiff(array $first, array $second): array
 {
-    $keys = array_keys(array_merge($data1, $data2));
-    $uniqueKeys = array_unique($keys);
-    sort($uniqueKeys);
+    $uniqueKeys = array_unique(array_merge(array_keys($first), array_keys($second)));
+    $sortedKeys = sort($uniqueKeys, fn($a, $b) => $a <=> $b);
 
-    $diff = array_map(function ($key) use ($data1, $data2) {
-        $oldValue = $data1[$key] ?? null;
-        $newValue = $data2[$key] ?? null;
+    return array_map(function ($key) use ($first, $second) {
+        $valueFirst = $first[$key] ?? null;
+        $valueSecond = $second[$key] ?? null;
 
-        if (!array_key_exists($key, $data1)) {
-            return ['key' => $key, 'type' => 'added', 'value' => $newValue];
+        if (
+            is_array($valueFirst) && !array_is_list($valueFirst) &&
+            is_array($valueSecond) && !array_is_list($valueSecond)
+        ) {
+            return [
+                'key' => $key,
+                'type' => 'nested',
+                'children' => buildDiff($valueFirst, $valueSecond),
+            ];
         }
 
-        if (!array_key_exists($key, $data2)) {
-            return ['key' => $key, 'type' => 'removed', 'value' => $oldValue];
+        if (!array_key_exists($key, $first)) {
+            return [
+                'key' => $key,
+                'type' => 'added',
+                'value' => $valueSecond,
+            ];
         }
 
-        if (is_array($oldValue) && is_array($newValue)) {
-            return ['key' => $key, 'type' => 'nested', 'children' => buildDiff($oldValue, $newValue)];
+        if (!array_key_exists($key, $second)) {
+            return [
+                'key' => $key,
+                'type' => 'removed',
+                'value' => $valueFirst,
+            ];
         }
 
-        if ($oldValue !== $newValue) {
-            return ['key' => $key, 'type' => 'changed', 'oldValue' => $oldValue, 'newValue' => $newValue];
+        if ($valueFirst === $valueSecond) {
+            return [
+                'key' => $key,
+                'type' => 'unchanged',
+                'value' => $valueFirst,
+            ];
         }
 
-        return ['key' => $key, 'type' => 'unchanged', 'value' => $oldValue];
-    }, $uniqueKeys);
-
-    return $diff;
+        return [
+            'key' => $key,
+            'type' => 'changed',
+            'oldValue' => $valueFirst,
+            'newValue' => $valueSecond,
+        ];
+    }, $sortedKeys);
 }
