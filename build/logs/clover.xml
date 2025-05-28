@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748415974">
-  <project timestamp="1748415974">
+<coverage generated="1748416699">
+  <project timestamp="1748416699">
     <file name="/home/me/php-project-48/src/BuildDiff.php">
+      <line num="7" type="stmt" count="3"/>
+      <line num="8" type="stmt" count="3"/>
       <line num="9" type="stmt" count="3"/>
-      <line num="10" type="stmt" count="3"/>
       <line num="11" type="stmt" count="3"/>
       <line num="12" type="stmt" count="3"/>
       <line num="13" type="stmt" count="3"/>
-      <line num="14" type="stmt" count="3"/>
       <line num="15" type="stmt" count="3"/>
-      <line num="18" type="stmt" count="3"/>
+      <line num="16" type="stmt" count="3"/>
       <line num="19" type="stmt" count="3"/>
       <line num="20" type="stmt" count="3"/>
-      <line num="21" type="stmt" count="3"/>
-      <line num="22" type="stmt" count="3"/>
       <line num="23" type="stmt" count="3"/>
       <line num="24" type="stmt" count="3"/>
-      <line num="25" type="stmt" count="3"/>
-      <line num="26" type="stmt" count="3"/>
       <line num="27" type="stmt" count="3"/>
       <line num="28" type="stmt" count="3"/>
-      <line num="29" type="stmt" count="3"/>
-      <line num="30" type="stmt" count="3"/>
       <line num="31" type="stmt" count="3"/>
-      <line num="33" type="stmt" count="3"/>
+      <line num="32" type="stmt" count="3"/>
       <line num="34" type="stmt" count="3"/>
-      <metrics loc="36" ncloc="36" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="23" coveredelements="23"/>
+      <metrics loc="36" ncloc="36" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="17" coveredelements="17"/>
     </file>
     <file name="/home/me/php-project-48/src/Differ.php">
       <line num="11" type="stmt" count="3"/>
@@ -128,6 +122,6 @@
       <line num="10" type="stmt" count="0"/>
       <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="8" loc="216" ncloc="216" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="103" coveredstatements="97" elements="103" coveredelements="97"/>
+    <metrics files="8" loc="216" ncloc="216" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="97" coveredstatements="91" elements="97" coveredelements="91"/>
   </project>
 </coverage>
