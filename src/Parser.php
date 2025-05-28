@@ -2,7 +2,6 @@
 
 namespace Differ\Parser;
 
-use Differ\Exception\FileException;
 use Symfony\Component\Yaml\Yaml;
 
 function parseFile(string $filepath): array
@@ -13,6 +12,6 @@ function parseFile(string $filepath): array
     return match ($ext) {
         'json' => json_decode($content, true),
         'yml', 'yaml' => Yaml::parse($content),
-        default => throw new FileException("Unsupported file extension: $ext"),
+        default => ['error' => "Unsupported file extension: $ext"],
     };
 }
