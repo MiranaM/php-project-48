@@ -8,7 +8,7 @@ use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
-    const FIXTURE_PATH = __DIR__ . '/__fixtures__/';
+    private const FIXTURE_PATH = __DIR__ . '/__fixtures__/';
 
     private string $file1;
     private string $file2;
