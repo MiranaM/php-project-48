@@ -4,14 +4,10 @@ namespace Differ\Formatters\Plain;
 
 function formatPlain(array $diff): string
 {
-    $lines = [];
-
-    foreach ($diff as $node) {
-        $line = iter($node, '');
-        if ($line !== null) {
-            $lines[] = $line;
-        }
-    }
+    $lines = array_filter(array_map(
+        fn($node) => iter($node, ''),
+        $diff
+    ));
 
     return implode(PHP_EOL, $lines);
 }
@@ -36,16 +32,17 @@ function iter(array $node, string $path): ?string
 
 function buildNested(array $children, string $path): string
 {
-    $lines = [];
-
-    foreach ($children as $child) {
-        $line = iter($child, $path);
-        if ($line !== null) {
-            $lines[] = $line;
-        }
-    }
-
-    return implode(PHP_EOL, $lines);
+    return implode(
+        PHP_EOL,
+        array_values(
+            array_filter(
+                array_map(
+                    fn($child) => iter($child, $path),
+                    $children
+                )
+            )
+        )
+    );
 }
 
 function toString(mixed $value): string

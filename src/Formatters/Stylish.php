@@ -9,65 +9,88 @@ function formatStylish(array $diff): string
 
 function iter(array $tree, int $depth = 1): string
 {
-    $indent = str_repeat('    ', $depth);
-    $currentIndent = str_repeat('    ', $depth - 1);
-    $lines = [];
+    $indentSize = 4;
+    $currentIndent = str_repeat(' ', $depth * $indentSize - 2);
+    $bracketIndent = str_repeat(' ', ($depth - 1) * $indentSize);
 
-    foreach ($tree as $node) {
-        $key = $node['key'];
+    $lines = array_map(
+        fn($node) => formatNode($node, $depth, $currentIndent),
+        $tree
+    );
 
-        switch ($node['type']) {
-            case 'nested':
-                $children = iter($node['children'], $depth + 1);
-                $lines[] = "{$indent}{$key}: {$children}";
-                break;
+    return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
+}
 
-            case 'added':
-                $value = toString($node['value'], $depth + 1);
-                $lines[] = "{$currentIndent}  + {$key}: {$value}";
-                break;
+function formatNode(array $node, int $depth, string $indent): string
+{
+    $key = $node['key'];
 
-            case 'removed':
-                $value = toString($node['value'], $depth + 1);
-                $lines[] = "{$currentIndent}  - {$key}: {$value}";
-                break;
-
-            case 'changed':
-                $oldValue = toString($node['oldValue'], $depth + 1);
-                $newValue = toString($node['newValue'], $depth + 1);
-                $lines[] = "{$currentIndent}  - {$key}: {$oldValue}";
-                $lines[] = "{$currentIndent}  + {$key}: {$newValue}";
-                break;
-
-            case 'unchanged':
-                $value = toString($node['value'], $depth + 1);
-                $lines[] = "{$indent}{$key}: {$value}";
-                break;
-        }
-    }
-
-    $result = implode("\n", $lines);
-    return "{\n{$result}\n{$currentIndent}}";
+    return match ($node['type']) {
+        'nested' => sprintf(
+            "%s  %s: %s",
+            $indent,
+            $key,
+            iter($node['children'], $depth + 1)
+        ),
+        'added' => sprintf(
+            "%s+ %s: %s",
+            $indent,
+            $key,
+            toString($node['value'], $depth + 1)
+        ),
+        'removed' => sprintf(
+            "%s- %s: %s",
+            $indent,
+            $key,
+            toString($node['value'], $depth + 1)
+        ),
+        'changed' => implode("\n", [
+            sprintf(
+                "%s- %s: %s",
+                $indent,
+                $key,
+                toString($node['oldValue'], $depth + 1)
+            ),
+            sprintf(
+                "%s+ %s: %s",
+                $indent,
+                $key,
+                toString($node['newValue'], $depth + 1)
+            ),
+        ]),
+        'unchanged' => sprintf(
+            "%s  %s: %s",
+            $indent,
+            $key,
+            toString($node['value'], $depth + 1)
+        ),
+        default => '',
+    };
 }
 
 function toString(mixed $value, int $depth): string
 {
-    if (is_array($value)) {
-        $indent = str_repeat('    ', $depth);
-        $bracketIndent = str_repeat('    ', $depth - 1);
-
-        $lines = [];
-        foreach ($value as $key => $val) {
-            $lines[] = "{$indent}{$key}: " . toString($val, $depth + 1);
-        }
-
-        $result = implode("\n", $lines);
-        return "{\n{$result}\n{$bracketIndent}}";
+    if (!is_array($value)) {
+        return match (true) {
+            is_bool($value) => $value ? 'true' : 'false',
+            is_null($value) => 'null',
+            default => (string) $value,
+        };
     }
 
-    return match (true) {
-        is_bool($value) => $value ? 'true' : 'false',
-        is_null($value) => 'null',
-        default => (string) $value,
-    };
+    $indentSize = 4;
+    $indent = str_repeat(' ', $depth * $indentSize);
+    $bracketIndent = str_repeat(' ', ($depth - 1) * $indentSize);
+
+    $lines = array_map(
+        fn($key) => sprintf(
+            "%s%s: %s",
+            $indent,
+            $key,
+            toString($value[$key], $depth + 1)
+        ),
+        array_keys($value)
+    );
+
+    return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
 }
