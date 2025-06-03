@@ -4,10 +4,13 @@ namespace Differ\Formatters\Plain;
 
 function formatPlain(array $diff): string
 {
-    $lines = array_filter(array_map(
-        fn($node) => iter($node, ''),
-        $diff
-    ));
+    $lines = array_filter(
+        array_map(
+            static fn(array $node): ?string => iter($node, ''),
+            $diff
+        ),
+        static fn($x): bool => $x !== null
+    );
 
     return implode(PHP_EOL, $lines);
 }
@@ -18,8 +21,15 @@ function iter(array $node, string $path): ?string
 
     return match ($node['type']) {
         'nested' => buildNested($node['children'], $property),
-        'added' => sprintf("Property '%s' was added with value: %s", $property, toString($node['value'])),
-        'removed' => sprintf("Property '%s' was removed", $property),
+        'added' => sprintf(
+            "Property '%s' was added with value: %s",
+            $property,
+            toString($node['value'])
+        ),
+        'removed' => sprintf(
+            "Property '%s' was removed",
+            $property
+        ),
         'changed' => sprintf(
             "Property '%s' was updated. From %s to %s",
             $property,
@@ -32,17 +42,15 @@ function iter(array $node, string $path): ?string
 
 function buildNested(array $children, string $path): string
 {
-    return implode(
-        PHP_EOL,
-        array_values(
-            array_filter(
-                array_map(
-                    fn($child) => iter($child, $path),
-                    $children
-                )
-            )
-        )
+    $lines = array_filter(
+        array_map(
+            static fn(array $child): ?string => iter($child, $path),
+            $children
+        ),
+        static fn($x): bool => $x !== null
     );
+
+    return implode(PHP_EOL, $lines);
 }
 
 function toString(mixed $value): string
