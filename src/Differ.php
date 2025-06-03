@@ -2,15 +2,22 @@
 
 namespace Differ\Differ;
 
-use function Differ\Parser\parseFile;
+use function Differ\Parser\parse;
 use function Differ\BuildDiff\buildDiff;
 use function Differ\Formatters\format;
 
-function genDiff(string $path1, string $path2, string $formatName = 'stylish'): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
-    $data1 = parseFile($path1);
-    $data2 = parseFile($path2);
-    $diffTree = buildDiff($data1, $data2);
+    $content1 = file_get_contents($pathToFile1);
+    $content2 = file_get_contents($pathToFile2);
 
-    return format($diffTree, $formatName);
+    $extension1 = pathinfo($pathToFile1, PATHINFO_EXTENSION);
+    $extension2 = pathinfo($pathToFile2, PATHINFO_EXTENSION);
+
+    $data1 = parse($content1, $extension1);
+    $data2 = parse($content2, $extension2);
+
+    $diff = buildDiff($data1, $data2);
+
+    return format($diff, $format);
 }

@@ -2,44 +2,59 @@
 
 namespace Differ\Formatters\Plain;
 
-function toString(mixed $value): string
+function formatPlain(array $diff): string
 {
-    if (is_array($value)) {
-        return '[complex value]';
+    $lines = [];
+
+    foreach ($diff as $node) {
+        $line = iter($node, '');
+        if ($line !== null) {
+            $lines[] = $line;
+        }
     }
 
-    if (is_bool($value)) {
-        return $value ? 'true' : 'false';
-    }
-
-    if ($value === null) {
-        return 'null';
-    }
-
-    return is_string($value) ? "'{$value}'" : (string)$value;
+    return implode(PHP_EOL, $lines);
 }
 
-function formatPlain(array $tree, string $ancestor = ''): string
+function iter(array $node, string $path): ?string
 {
-    $lines = array_map(function ($node) use ($ancestor) {
-        $property = $ancestor === '' ? $node['key'] : "{$ancestor}.{$node['key']}";
+    $property = $path === '' ? $node['key'] : "{$path}.{$node['key']}";
 
-        switch ($node['type']) {
-            case 'added':
-                return "Property '{$property}' was added with value: " . toString($node['value']);
-            case 'removed':
-                return "Property '{$property}' was removed";
-            case 'changed':
-                return "Property '{$property}' was updated. From "
-                    . toString($node['oldValue']) . " to " . toString($node['newValue']);
-            case 'nested':
-                return formatPlain($node['children'], $property);
-            case 'unchanged':
-                return '';
-            default:
-                throw new \Exception("Unknown node type: {$node['type']}");
+    return match ($node['type']) {
+        'nested' => buildNested($node['children'], $property),
+        'added' => sprintf("Property '%s' was added with value: %s", $property, toString($node['value'])),
+        'removed' => sprintf("Property '%s' was removed", $property),
+        'changed' => sprintf(
+            "Property '%s' was updated. From %s to %s",
+            $property,
+            toString($node['oldValue']),
+            toString($node['newValue'])
+        ),
+        default => null,
+    };
+}
+
+function buildNested(array $children, string $path): string
+{
+    $lines = [];
+
+    foreach ($children as $child) {
+        $line = iter($child, $path);
+        if ($line !== null) {
+            $lines[] = $line;
         }
-    }, $tree);
+    }
 
-    return implode("\n", array_filter($lines, fn($line) => $line !== ''));
+    return implode(PHP_EOL, $lines);
+}
+
+function toString(mixed $value): string
+{
+    return match (true) {
+        is_bool($value) => $value ? 'true' : 'false',
+        is_null($value) => 'null',
+        is_array($value) => '[complex value]',
+        is_string($value) => "'{$value}'",
+        default => (string) $value,
+    };
 }

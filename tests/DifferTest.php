@@ -8,6 +8,8 @@ use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
+    const FIXTURE_PATH = __DIR__ . '/__fixtures__/';
+
     private string $file1;
     private string $file2;
     private string $expectedStylish;
@@ -15,11 +17,11 @@ class DifferTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->file1 = __DIR__ . '/__fixtures__/file1.json';
-        $this->file2 = __DIR__ . '/__fixtures__/file2.json';
-        $this->expectedStylish = file_get_contents(__DIR__ . '/__fixtures__/expected_stylish.txt');
-        $this->expectedPlain = file_get_contents(__DIR__ . '/__fixtures__/expected_plain.txt');
-        $this->expectedJson = file_get_contents(__DIR__ . '/__fixtures__/expected_json.txt');
+        $this->file1 = self::FIXTURE_PATH . 'file1.json';
+        $this->file2 = self::FIXTURE_PATH . 'file2.json';
+        $this->expectedStylish = file_get_contents(self::FIXTURE_PATH . 'expected_stylish.txt');
+        $this->expectedPlain = file_get_contents(self::FIXTURE_PATH . 'expected_plain.txt');
+        $this->expectedJson = file_get_contents(self::FIXTURE_PATH . 'expected_json.txt');
     }
 
     public function testStylishFormat(): void
