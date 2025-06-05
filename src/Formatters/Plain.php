@@ -12,7 +12,7 @@ function formatPlain(array $diff): string
         static fn($x): bool => $x !== null
     );
 
-    return implode(PHP_EOL, $lines);
+    return implode("\n", $lines);
 }
 
 function iter(array $node, string $path): ?string
@@ -50,7 +50,7 @@ function buildNested(array $children, string $path): string
         static fn($x): bool => $x !== null
     );
 
-    return implode(PHP_EOL, $lines);
+    return implode("\n", $lines);
 }
 
 function toString(mixed $value): string

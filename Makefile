@@ -1,9 +1,8 @@
-.PHONY: test lint
+.PHONY: test lint coverage
 
 test:
-	mkdir -p build
-	vendor/bin/phpunit --coverage-clover build/coverage.xml
-
+	mkdir -p build/logs
+	vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 lint:
 	vendor/bin/phpcs --standard=PSR12 src tests

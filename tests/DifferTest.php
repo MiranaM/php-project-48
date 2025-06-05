@@ -10,32 +10,29 @@ class DifferTest extends TestCase
 {
     private const FIXTURE_PATH = __DIR__ . '/__fixtures__/';
 
-    private string $file1;
-    private string $file2;
-    private string $expectedStylish;
-    private string $expectedPlain;
-
-    protected function setUp(): void
+    private function getFixtureFullPath(string $filename): string
     {
-        $this->file1 = self::FIXTURE_PATH . 'file1.json';
-        $this->file2 = self::FIXTURE_PATH . 'file2.json';
-        $this->expectedStylish = file_get_contents(self::FIXTURE_PATH . 'expected_stylish.txt');
-        $this->expectedPlain = file_get_contents(self::FIXTURE_PATH . 'expected_plain.txt');
-        $this->expectedJson = file_get_contents(self::FIXTURE_PATH . 'expected_json.txt');
+        return self::FIXTURE_PATH . $filename;
     }
 
-    public function testStylishFormat(): void
+    /**
+     * @dataProvider formatProvider
+     */
+    public function testGenDiffWithVariousFormats(string $format, string $expectedFile): void
     {
-        $this->assertEquals($this->expectedStylish, genDiff($this->file1, $this->file2, 'stylish'));
+        $file1 = $this->getFixtureFullPath('file1.json');
+        $file2 = $this->getFixtureFullPath('file2.json');
+        $expected = file_get_contents($this->getFixtureFullPath($expectedFile));
+
+        $this->assertEquals($expected, genDiff($file1, $file2, $format));
     }
 
-    public function testPlainFormat(): void
+    public static function formatProvider(): array
     {
-        $this->assertEquals($this->expectedPlain, genDiff($this->file1, $this->file2, 'plain'));
-    }
-
-    public function testJsonFormat(): void
-    {
-        $this->assertEquals($this->expectedJson, genDiff($this->file1, $this->file2, 'json'));
+        return [
+            ['stylish', 'expected_stylish.txt'],
+            ['plain', 'expected_plain.txt'],
+            ['json', 'expected_json.txt'],
+        ];
     }
 }

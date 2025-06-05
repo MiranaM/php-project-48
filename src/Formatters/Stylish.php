@@ -18,7 +18,7 @@ function iter(array $tree, int $depth = 1): string
         $tree
     );
 
-    return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
+    return implode("\n", ["{", ...$lines, "{$bracketIndent}}"]);
 }
 
 function formatNode(array $node, int $depth, string $indent): string
@@ -92,5 +92,5 @@ function toString(mixed $value, int $depth): string
         array_keys($value)
     );
 
-    return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
+    return implode("\n", ["{", ...$lines, "{$bracketIndent}}"]);
 }
